@@ -2,11 +2,11 @@
 
 Static onboarding form hosted on GitHub Pages.
 
-**Version:** 1.1.2 ([changelog](CHANGELOG.md))
+**Version:** 1.1.3 ([changelog](CHANGELOG.md))
 
 **Live form:** [https://omicvision-biosciences.github.io/resolutebio-onboarding-form/](https://omicvision-biosciences.github.io/resolutebio-onboarding-form/)
 
-The form shows this version in the footer (`© 2026 · vX.Y.Z`) after it unpacks. The number comes from `version.js` (`window.FORM_VERSION`). bumpversion updates that file and the version line in this README, then commits and tags `vX.Y.Z`.
+The form shows this version in the footer (`© 2026 · vX.Y.Z`) after it unpacks. The number comes from `version.js` (`window.FORM_VERSION`). bumpversion updates that file and the version line in this README. It does **not** edit `CHANGELOG.md` (see release steps below).
 
 ## Enable GitHub Pages (one-time)
 
@@ -43,9 +43,17 @@ No build step is required. GitHub Pages serves `index.html` and `version.js` fro
 
 Working tree must be clean. Commit form and changelog edits first, then bump.
 
-1. Record differences in [CHANGELOG.md](CHANGELOG.md) (move `[Unreleased]` into a `## [x.y.z] - YYYY-MM-DD` heading for the version you are about to mint)
+1. In [CHANGELOG.md](CHANGELOG.md), add a dated release heading **above** `[Unreleased]` for the version you are about to mint, and move the unreleased bullets under it:
+
+   ```markdown
+   ## [Unreleased]
+
+   ## [1.1.4] - 2026-09-10
+   - [Added] Your change here
+   ```
+
 2. Commit those changes
-3. Bump (updates `version.js` and the version line above, commits, tags `vX.Y.Z`):
+3. Bump (updates `version.js`, the version line above, and `.bumpversion.cfg` only):
 
 ```bash
 bumpversion patch   # 1.0.0 -> 1.0.1
