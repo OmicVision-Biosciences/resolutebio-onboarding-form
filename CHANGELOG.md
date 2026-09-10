@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.1.4] - 2026-09-10
+## [Unreleased]
 - [Added] Central versioning 
 
 ## [1.0.0] - 2026-09-10
