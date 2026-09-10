@@ -310,17 +310,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     // DOMParser/replaceWith are inert per spec — re-create each with
     // createElement so they execute, awaiting onload for src scripts to
     // preserve ordering (React before ReactDOM before Babel before text/babel).
+    if (window.FORM_VERSION) {
+      template = template.replace(/© 2026 · v[\d.]+/g, '© 2026 · v' + window.FORM_VERSION);
+    }
+
     const doc = new DOMParser().parseFromString(template, 'text/html');
     document.documentElement.replaceWith(doc.documentElement);
-
-    if (window.FORM_VERSION) {
-      var badge = document.createElement('a');
-      badge.id = 'form-version';
-      badge.href = 'https://github.com/OmicVision-Biosciences/resolutebio-onboarding-form/blob/main/CHANGELOG.md';
-      badge.textContent = 'v' + window.FORM_VERSION;
-      badge.style.cssText = 'position:fixed;bottom:8px;right:8px;z-index:99999;font:12px/1.4 -apple-system,BlinkMacSystemFont,sans-serif;color:#120742;background:rgba(250,249,245,0.92);padding:4px 10px;border-radius:6px;text-decoration:none;opacity:0.7';
-      document.body.appendChild(badge);
-    }
 
     // Resolve page-frame markers: mint this document's own blob for each
     // framed page — from local text when this is the root, otherwise by
@@ -369,6 +364,16 @@ document.addEventListener('DOMContentLoaded', async function() {
     // which fired before we swapped the document. Trigger manually if present.
     if (window.Babel && typeof window.Babel.transformScriptTags === 'function') {
       window.Babel.transformScriptTags();
+    }
+    if (window.FORM_VERSION) {
+      var label = '© 2026 · v' + window.FORM_VERSION;
+      var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      var node;
+      while ((node = walker.nextNode())) {
+        if (/© 2026 · v[\d.]+/.test(node.nodeValue)) {
+          node.nodeValue = node.nodeValue.replace(/© 2026 · v[\d.]+/, label);
+        }
+      }
     }
   } catch (err) {
     setStatus('Error unpacking: ' + err.message);

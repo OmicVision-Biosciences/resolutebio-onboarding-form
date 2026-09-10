@@ -6,7 +6,7 @@ Static onboarding form hosted on GitHub Pages.
 
 **Live form:** [https://omicvision-biosciences.github.io/resolutebio-onboarding-form/](https://omicvision-biosciences.github.io/resolutebio-onboarding-form/)
 
-The form shows this version in a badge after it unpacks. The number comes from `version.js` (`window.FORM_VERSION`). bumpversion updates that file and the version line in this README, then commits and tags `vX.Y.Z`.
+The form shows this version in the footer (`© 2026 · vX.Y.Z`) after it unpacks. The number comes from `version.js` (`window.FORM_VERSION`). bumpversion updates that file and the version line in this README, then commits and tags `vX.Y.Z`.
 
 ## Enable GitHub Pages (one-time)
 
@@ -17,14 +17,16 @@ If the form is not live yet:
 3. Choose branch `main` and folder `/ (root)`
 4. Save — the form will be available at the URL above within a few minutes
 
+
+
 ## Update the form
 
 The packed form lives in `index.html`. Versioning lives in the outer wrapper (not in a newly exported artifact).
 
 1. Replace `index.html` with a new .html file of the form
 2. Restore the outer wrapper pieces if the export overwrote them:
-   - `<script src="version.js"></script>` in `<head>`
-   - the post-`replaceWith` `#form-version` badge mount
+  - `<script src="version.js"></script>` in `<head>`
+  - the unpack step that writes `FORM_VERSION` into the footer (`© 2026 · vX.Y.Z`)
 3. Commit and push to `main`:
 
 ```bash
@@ -33,7 +35,7 @@ git commit -m "Update onboarding form"
 git push origin main
 ```
 
-4. Wait a minute or two, then refresh the live URL to confirm the change
+1. Wait a minute or two, then refresh the live URL to confirm the change
 
 No build step is required. GitHub Pages serves `index.html` and `version.js` from the root of `main` as-is.
 
@@ -51,8 +53,9 @@ bumpversion minor   # 1.0.0 -> 1.1.0
 bumpversion major   # 1.0.0 -> 2.0.0
 ```
 
-4. Push the commit and tag:
+1. Push the commit and tag:
 
 ```bash
-git push origin main --follow-tags
+git push origin main 
 ```
+
