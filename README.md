@@ -2,7 +2,7 @@
 
 Static onboarding form hosted on GitHub Pages.
 
-**Version:** 1.1.3 ([changelog](CHANGELOG.md))
+**Version:** 1.1.4 ([changelog](CHANGELOG.md))
 
 **Live form:** [https://omicvision-biosciences.github.io/resolutebio-onboarding-form/](https://omicvision-biosciences.github.io/resolutebio-onboarding-form/)
 
