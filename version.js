@@ -1,1 +1,1 @@
-window.FORM_VERSION = "1.1.1";
+window.FORM_VERSION = "1.1.2";
